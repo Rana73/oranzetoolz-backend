@@ -68,7 +68,8 @@ class User extends Authenticatable implements JWTSubject
     static function generateResetPasswordCode()
     {
         $reset_code = rand(100000,999999);
-        $reset_code = str_replace("/", "_", Hash::make($reset_code));
+        // $reset_code = str_replace("/", "_", Hash::make($reset_code));
+        $reset_code = str_replace(str_split('\\/:*?"<>|+-.$'), '', Hash::make($reset_code));;
         if(User::where('pass_reset_code',$reset_code)->exists()){
             $reset_code = User::generateResetPasswordCode();
         }
