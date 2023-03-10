@@ -11,9 +11,4 @@ class Task extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ["*"];
-    protected $appends = ['fixed'];
-
-    public function getFixedAttribute(){
-        return false;
-    }
 }
